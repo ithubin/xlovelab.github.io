@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xlovelab</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="generator" content="Jekyll">
+    <meta name="author" content="{{ site.author.name }}">
+
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="keywords" content="{% if page.keywords %}{{ page.keywords | join: ',' }}{% else %}{{ site.keywords | join: ',' }}{% endif %}">
+
+    {% if site.robots %}
+    <meta name="robots" content="{{ site.robots }}">
+    {% endif %}
+
+    {% if page.categories %}
+    {% for category in page.categories limit:1 %}
+    <meta property="article:section" content="{{ category }}">
+    {% endfor %}
+    {% endif %}
+
+    {% if page.tags %}
+    {% for tag in page.tags %}
+    <meta property="article:tag" content="{{ tag }}">
+    {% endfor %}
+    {% endif %}
+
+    <!-- plugin styles -->
+    <link href="{{ site.static_path }}bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ site.static_path }}font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ site.static_path }}animate.css/animate.min.css" rel="stylesheet">
+
+    <link id="theme-link" href="" rel="stylesheet">
+
+    {% include theme.html %}
+
+    <!-- fav icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <!-- atom & rss feed -->
+    <link href="{{ site.atom_path }}" type="application/atom+xml" rel="alternate" title="atom">
+    <link href="{{ site.rss_path }}" type="application/rss+xml" rel="alternate" title="rss">
+
+    <script src="{{ site.static_path }}normalize-strings/normalize.min.js"></script>
+
+    <script src="{{ site.static_path }}jquery/dist/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<nav class="navbar navbar-default" id="navigate" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#xlove-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ site.base_path }}">{{ site.name }}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="xlove-navbar-collapse">
+            <ul class="nav navbar-nav">
+                {% for node in site.pages %}
+                {% if node.group == 'navigation' %}
+                <li {% if page.url == node.url %} class="active" {% endif %}><a href="{{ node.url | remove: 'index.html' }}" class="active">{{node.title}}</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" id="bdcsMain" class="form-control" placeholder="{{ site.name }} : Search">
+                </div>
+                <button type="submit" class="btn btn-default hide">Submit</button>
+            </form>
+        </div>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>
+<header>
+
+</header>
+
+
+<hr />
+<footer class="container-fluid text-center">
+    <p>
+        <a href="{{ site.baseurl }}">{{ site.name }}</a>
+    </p>
+    <ul class="list-inline">
+        <li><a href="mailto:{{ site.author.email }}" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+        <li><a href="http://github.com/{{ site.author.github }}" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a href="http://weibo.com/{{ site.author.weibo }}/" target="_blank"><i class="fa fa-weibo"></i></a></li>
+        <li><a href="http://renren.com/{{ site.author.renren }}" target="_blank"><i class="fa fa-renren"></i></a></li>
+        <li><a href="http://user.qzone.qq.com/{{ site.author.qq }}" target="_blank"><i class="fa fa-qq"></i></a></li>
+        <li><a href="http://twitter.com/{{ site.author.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="http://facebook.com/{{ site.author.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="{{ site.rss_path }}" target="_blank"><i class="fa fa-rss"></i></a></li>
+    </ul>
+    <p>
+        &copy; {{ site.time | date: '%Y' }}
+        <a href="{{ site.url }}" target="_blank">{{ site.author.name }}</a>
+        with help from
+        <a href="http://jekyllrb.com" target="_blank">Jekyll</a>
+        and
+        <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+    </p>
+</footer>
+</body>
+</html>

@@ -16,13 +16,35 @@
     <meta name="description" content="x love lab">
     <meta name="keywords" content="xlovelab">
 
+    <!-- fav icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
     <!-- plugin styles -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="bower_components/animate.css/animate.min.css" rel="stylesheet">
 
-    <!-- fav icons -->
-    <link rel="shortcut icon" href="/favicon.ico">
+    <style>
+
+        #background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .land {
+            stroke-opacity: 1;
+        }
+
+    </style>
 
     <!--[if lt IE 9]>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -34,14 +56,16 @@
     <![endif]-->
 </head>
 <body>
+<div id="background">
+
+</div>
+
 <header class="container-fluid text-center">
     <h1>xlovelab</h1>
 </header>
-<hr />
-<section>
-
-</section>
-<hr />
+<hr/>
+<div id="map"></div>
+<hr/>
 <footer class="container-fluid text-center">
     <p>
         <a href="//xlovalab.github.io">xlovelab</a>
@@ -51,14 +75,191 @@
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/d3/d3.min.js"></script>
+<script src="bower_components/d3-queue/d3-queue.js"></script>
+<script src="bower_components/topojson/topojson.js"></script>
+<script src="bower_components/datamaps/dist/datamaps.all.min.js"></script>
 <script src="bower_components/three.js/three.min.js"></script>
-
 <script>
 
-</script>
+    d3.select(window)
+            .on("mousemove", mousemove)
+            .on("mouseup", mouseup);
 
+    var width = window.innerWidth, height = window.innerHeight;
+
+    var h = window.innerHeight - $('header').height() - $('footer').height() - $('hr').height() * 2;
+    var map = d3.select("#map").append("svg")
+            .attr("width", width)
+            .attr("height", h)
+            .append("g")
+            .attr("transform", "translate(0,0)");
+
+    var projection = d3.geo.mercator()
+            .center([107, 31])
+            .scale(h)
+            .translate([width / 2, height / 2]);
+
+    var p = d3.geo.path().projection(projection);
+
+    var color = d3.scale.category20();
+
+    d3.json("data/china.json", function (error, root) {
+
+        if (error) return console.error(error);
+
+        map.selectAll("path")
+                .data(root.features)
+                .enter()
+                .append("path")
+                .attr("stroke", "#000")
+                .attr("stroke-width", 2)
+                .attr("fill", function (d, i) {
+                    return '#eee';
+                })
+                .attr("d", p)
+                .on("mouseover", function (d, i) {
+                    d3.select(this).attr("fill", color(i));
+                });
+    });
+
+    var proj = d3.geo.orthographic()
+            .translate([width / 2, height / 2])
+            .clipAngle(90)
+            .scale(200);
+
+    var path = d3.geo.path().projection(proj).pointRadius(2);
+
+    var svg = d3.select("#background").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .on("mousedown", mousedown);
+
+    d3_queue.queue().defer(d3.json, "data/world-110m.json")
+            .defer(d3.json, "data/places.json")
+            .await(ready);
+
+    function ready(error, world, places) {
+        var ocean_fill = svg.append("defs").append("radialGradient")
+                .attr("id", "ocean_fill")
+                .attr("cx", "75%")
+                .attr("cy", "25%");
+        ocean_fill.append("stop").attr("offset", "5%").attr("stop-color", "#fff");
+        ocean_fill.append("stop").attr("offset", "100%").attr("stop-color", "#ababab");
+
+        var globe_highlight = svg.append("defs").append("radialGradient")
+                .attr("id", "globe_highlight")
+                .attr("cx", "75%")
+                .attr("cy", "25%");
+        globe_highlight.append("stop")
+                .attr("offset", "5%").attr("stop-color", "#ffd")
+                .attr("stop-opacity", "0.6");
+        globe_highlight.append("stop")
+                .attr("offset", "100%").attr("stop-color", "#ba9")
+                .attr("stop-opacity", "0.2");
+
+        var globe_shading = svg.append("defs").append("radialGradient")
+                .attr("id", "globe_shading")
+                .attr("cx", "55%")
+                .attr("cy", "45%");
+        globe_shading.append("stop")
+                .attr("offset", "30%").attr("stop-color", "#fff")
+                .attr("stop-opacity", "0");
+        globe_shading.append("stop")
+                .attr("offset", "100%").attr("stop-color", "#505962")
+                .attr("stop-opacity", "0.3");
+
+        var drop_shadow = svg.append("defs").append("radialGradient")
+                .attr("id", "drop_shadow")
+                .attr("cx", "50%")
+                .attr("cy", "50%");
+        drop_shadow.append("stop")
+                .attr("offset", "20%").attr("stop-color", "#000")
+                .attr("stop-opacity", ".5");
+        drop_shadow.append("stop")
+                .attr("offset", "100%").attr("stop-color", "#000")
+                .attr("stop-opacity", "0");
+
+        svg.append("ellipse")
+                .attr("cx", '50%').attr("cy", '100%')
+                .attr("rx", proj.scale() * .90)
+                .attr("ry", proj.scale() * .25)
+                .attr("class", "noclicks")
+                .style("fill", "url(#drop_shadow)");
+
+        svg.append("circle")
+                .attr("cx", width / 2).attr("cy", height / 2)
+                .attr("r", proj.scale())
+                .attr("class", "noclicks")
+                .style("fill", "url(#ocean_fill)");
+
+        svg.append("path")
+                .datum(topojson.feature(world, world.objects.land))
+                .attr("class", "land")
+                .attr("fill", color(Math.floor(Math.random() * 20)))
+                .attr("d", path);
+
+        refresh();
+    }
+
+    var m0, o0;
+    function mousedown() {
+        m0 = [d3.event.pageX, d3.event.pageY];
+        o0 = proj.rotate();
+        d3.event.preventDefault();
+    }
+    function mousemove() {
+        if (m0) {
+            var m1 = [d3.event.pageX, d3.event.pageY]
+                    , o1 = [o0[0] + (m1[0] - m0[0]) / 6, o0[1] + (m0[1] - m1[1]) / 6];
+            o1[1] = o1[1] > 30 ? 30 :
+                    o1[1] < -30 ? -30 :
+                            o1[1];
+            proj.rotate(o1);
+            refresh();
+        }
+    }
+    function mouseup() {
+        if (m0) {
+            mousemove();
+            m0 = null;
+        }
+    }
+
+    function refresh() {
+
+        svg.selectAll(".land").attr("fill", function (d, i) {
+            return s == 2 ? color(Math.floor(Math.random() * 20)) : d3.select(this).attr("fill");
+        }).attr("d", path);
+    }
+
+    requestAnimationFrame = requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    var s = 1, flag = 1, o = 0, r = 0.2;
+    var animate = function () {
+        if (s > 500 || s < 1) {
+            flag *= -1;
+        }
+        if (o > 360) o = 0;
+        proj.scale(s += flag);
+        proj.rotate([o += r, 0]);
+        refresh();
+
+        map.selectAll("path")
+                .attr("fill", function (d, i) {
+                    if (i == Math.floor(Math.random() * 34) && Math.random() > 0.5) {
+                        return color(Math.floor(Math.random() * 20));
+                    }
+                    else {
+                        return d3.select(this).attr("fill");
+                    }
+                });
+
+        requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+
+</script>
 <script src="bower_components/normalize-strings/normalize.min.js"></script>
 <script src="bower_components/prefixfree/prefixfree.min.js"></script>
-
 </body>
 </html>

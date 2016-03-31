@@ -59,19 +59,19 @@
 <div id="background">
 
 </div>
-
 <header class="container-fluid text-center">
     <h1>xlovelab</h1>
+    <hr>
 </header>
-<hr/>
+</div>
 <div id="map"></div>
-<hr/>
+
 <footer class="container-fluid text-center">
+    <hr>
     <p>
-        <a href="//xlovalab.github.io">xlovelab</a>
+        <a href="//xlove.github.io">xlove</a>
     </p>
 </footer>
-
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/d3/d3.min.js"></script>
@@ -85,7 +85,7 @@
 
     var width = window.innerWidth, height = window.innerHeight;
 
-    var h = window.innerHeight - $('header').height() - $('footer').height() - $('hr').height() * 2;
+    var h = window.innerHeight - $('header').height() - $('footer').height();
     var map = d3.select("#map").append("svg")
             .attr("width", width)
             .attr("height", h)
@@ -94,7 +94,7 @@
 
     var projection = d3.geo.mercator()
             .center([107, 31])
-            .scale(h)
+            .scale(Math.min(width, h))
             .translate([width / 2, height / 2]);
 
     var p = d3.geo.path().projection(projection);

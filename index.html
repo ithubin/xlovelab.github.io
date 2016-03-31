@@ -178,7 +178,7 @@
                 .attr("stop-opacity", "0");
 
         svg.append("ellipse")
-                .attr("cx", '50%').attr("cy", '90%')
+                .attr("cx", '50%').attr("cy", '100%')
                 .attr("rx", proj.scale() * .90)
                 .attr("ry", proj.scale() * .25)
                 .style("fill", "url(#drop_shadow)");
@@ -186,7 +186,6 @@
         svg.append("circle")
                 .attr("cx", width / 2).attr("cy", height / 2)
                 .attr("r", proj.scale())
-                .attr("class", "noclicks")
                 .style("fill", "url(#ocean_fill)");
 
         svg.append("path")
@@ -227,6 +226,13 @@
         svg.selectAll(".land").attr("fill", function (d, i) {
             return s == 2 ? color(Math.floor(Math.random() * 20)) : d3.select(this).attr("fill");
         }).attr("d", path);
+
+        svg.selectAll("ellipse")
+                .attr("rx", proj.scale() * .90)
+                .attr("ry", proj.scale() * .25);
+
+        svg.selectAll("circle").attr("r", proj.scale());
+
     }
 
     requestAnimationFrame = requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;

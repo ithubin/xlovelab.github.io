@@ -42,7 +42,7 @@
             width: 100%;
         }
 
-        #xlab {
+        #vlab {
             width: 100%;
             height: 100%;
         }
@@ -114,10 +114,10 @@
 <body>
 
 <header class="container-fluid text-center">
-    <h1>xlab</h1>
+    <h1>vlab</h1>
 </header>
 
-<div id="xlab"></div>
+<div id="vlab"></div>
 
 <footer class="container-fluid text-center">
     <hr>
@@ -139,10 +139,10 @@
         }
     });
 
-    var width = $('#xlab').width();
+    var width = $('#vlab').width();
     var height = window.innerHeight - $('header').height() - $('footer').height();
 
-    var svg = d3.select("#xlab").append("svg")
+    var svg = d3.select("#vlab").append("svg")
             .attr("width", width)
             .attr("height", height);
 

@@ -7,7 +7,7 @@
     {
       "level": 1,
       "name": "ilab",
-      "url": "../ilab",
+      "url": "../ilab/",
       "img": "../x/images/default.png",
       "children": [
         {
@@ -22,7 +22,7 @@
     {
       "level": 1,
       "name": "xlab",
-      "url": "../xlab",
+      "url": "../xlab/",
       "img": "../x/images/default.png",
       "children": [
         {
@@ -51,7 +51,7 @@
     {
       "level": 1,
       "name": "vlab",
-      "url": "../vlab",
+      "url": "../vlab/",
       "img": "../x/images/default.png",
       "children": [
         {
@@ -73,7 +73,7 @@
     {
       "level": 1,
       "name": "mlab",
-      "url": "../mlab",
+      "url": "../mlab/",
       "img": "../x/images/default.png",
       "children": [
         {

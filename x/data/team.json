@@ -1,0 +1,62 @@
+{
+  "name": "xlab",
+  "title": "全端研发小组",
+  "location": "北京",
+  "log": "116.1172797",
+  "lat": "39.9390731",
+  "xlog": "103.5",
+  "xlat": "47",
+  "w": "480",
+  "h": "480",
+  "img": "../x/images/team.png",
+  "people": [
+    {
+      "name": "刘永继",
+      "title": "全端研发工程师",
+      "location": "汉中",
+      "log": "106.999969",
+      "lat": "33.0764809",
+      "xlog": "80",
+      "xlat": "24",
+      "w": "480",
+      "h": "480",
+      "img": "../x/images/liuyongji.png"
+    },
+    {
+      "name": "张云龙",
+      "title": "前端开发工程师",
+      "location": "郑州",
+      "log": "113.5230944",
+      "lat": "34.7428137",
+      "xlog": "100",
+      "xlat": "25",
+      "w": "480",
+      "h": "480",
+      "img": "../x/images/zhangyunlong.png"
+    },
+    {
+      "name": "杨凯月",
+      "title": "前端开发工程师",
+      "location": "唐山",
+      "log": "118.0436255",
+      "lat": "39.6260513",
+      "xlog": "115",
+      "xlat": "28",
+      "w": "480",
+      "h": "480",
+      "img": "../x/images/yangkaiyue.png"
+    },
+    {
+      "name": "郭薇",
+      "title": "前端开发工程师",
+      "location": "秦皇岛",
+      "log": "119.5666118",
+      "lat": "39.9426618",
+      "xlog": "128",
+      "xlat": "32",
+      "w": "480",
+      "h": "480",
+      "img": "../x/images/guowei.png"
+    }
+  ]
+}

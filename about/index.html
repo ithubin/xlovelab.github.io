@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>about</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="name" content="xlovelab">
+    <meta name="author" content="liuyongji">
+    <meta name="email" content="liuyongji1990@gmail.com">
+
+    <meta name="description" content="x love lab">
+    <meta name="keywords" content="xlovelab">
+
+    <!-- fav icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <!-- plugin styles -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../bower_components/animate.css/animate.min.css" rel="stylesheet">
+
+    <style>
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            width: 100%;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        #tree {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes loading {
+            to {
+                text-shadow: 0 0 2px rgba(204, 208, 212, 0.2), 0 0 3px rgba(0, 0, 0, 0.02), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0px rgba(255, 255, 180, 0);
+                color: transparent;
+            }
+
+        }
+
+        h1 {
+            font-family: 'Source Code Pro', sans-serif;
+        }
+
+        h1 span {
+            font-size: 2em;
+            text-align: center;
+            display: inline-block;
+            transform-origin: 50% 250%;
+            text-shadow: 0 0 2px rgba(204, 208, 212, 0.9), 0 15px 25px rgba(0, 0, 0, 0.3), 0 -2px 3px rgba(0, 0, 0, 0.1), 0 -5px 10px rgba(255, 255, 255, 0.5), 0 5px 10px rgba(0, 0, 0, 0.3), 0 3px 4px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.45), 0 0 30px rgba(255, 255, 180, .4);
+            animation: loading 1.2s ease-in-out infinite alternate;
+        }
+
+        h1 span:nth-child(1) {
+            animation-delay: .09s;
+        }
+
+        h1 span:nth-child(2) {
+            animation-delay: .18s;
+        }
+
+        h1 span:nth-child(3) {
+            animation-delay: .27s;
+        }
+
+        h1 span:nth-child(4) {
+            animation-delay: .36s;
+        }
+
+        h1 span:nth-child(5) {
+            animation-delay: .45s;
+        }
+
+        h1 span:nth-child(6) {
+            animation-delay: .54s;
+        }
+
+        h1 span:nth-child(7) {
+            animation-delay: .63s;
+        }
+
+        h1 span:nth-child(8) {
+            animation-delay: .72s;
+        }
+
+        svg {
+            display: block;
+            margin: auto;
+        }
+
+        .node {
+            cursor: pointer;
+        }
+
+        .node circle {
+            fill: #fff;
+            stroke: steelblue;
+            stroke-width: 3px;
+        }
+
+        .node text {
+            font-size: x-large;
+            stroke: black;
+        }
+
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 3px;
+        }
+
+        .href:hover {
+            text-decoration: none;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<header class="text-center">
+    <a href="../"><h1>xlovelab</h1></a>
+</header>
+
+<div id="tree"></div>
+
+<footer class="text-center">
+    <hr>
+    <p>
+        <a href="//xlove.github.io">xlove</a>
+    </p>
+</footer>
+
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/d3/d3.min.js"></script>
+<script>
+
+    $("h1").children().andSelf().contents().each(function () {
+        if (this.nodeType == 3) {
+            var $this = $(this);
+            $this.replaceWith($this.text().replace(/(\w)/g, "<span>$&</span>"));
+        }
+    });
+
+    var width = $('#tree').width();
+    var height = window.innerHeight - $('header').height() - $('footer').height();
+
+    var color = d3.scale.category20();
+
+    var cluster = d3.layout.cluster().size([width, height - 360]);
+
+    var diagonal = d3.svg.diagonal().projection(function (d) {
+                return [d.x, d.y];
+            });
+
+    var svg = d3.select("#tree").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(0,120)");
+
+    d3.json("../x/data/tree.json", function (error, root) {
+        if (error) throw error;
+
+        var nodes = cluster.nodes(root),
+                links = cluster.links(nodes);
+
+        var link = svg.selectAll(".link")
+                .data(links)
+                .enter().append("path")
+                .attr("class", "link")
+                .attr("d", diagonal);
+
+        var node = svg.selectAll(".node")
+                .data(nodes)
+                .enter().append("a")
+                .attr("xlink:href", function (d) {
+                    return d.url;
+                })
+                .attr("class", "href")
+                .append("g")
+                .attr("class", "node")
+                .attr("transform", function (d) {
+                    return "translate(" + d.x + "," + d.y + ")";
+                });
+
+        node.append("circle")
+                .attr("r", 6)
+                .style("stroke", function (d) {
+                    return color(d.level);
+                });
+
+        node.append("text")
+                .attr("dx", 0)
+                .attr("dy", 0)
+                .attr("transform", function (d) {
+                    return d.children ? "translate(45, -16)" : "rotate(90)translate(16, 8)";
+                })
+                .attr("text-anchor", function (d) {
+                    return d.children ? "end" : "start";
+                })
+                .text(function (d) {
+                    return d.name;
+                });
+    });
+
+</script>
+<script src="../bower_components/normalize-strings/normalize.min.js"></script>
+<script src="../bower_components/prefixfree/prefixfree.min.js"></script>
+</body>
+</html>

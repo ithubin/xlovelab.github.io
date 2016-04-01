@@ -26,19 +26,13 @@
 
     <style>
 
-        #background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
+        html, body {
+            margin: 0;
+            padding: 0;
         }
 
-        #map {
+        header {
             width: 100%;
-            height: 100%;
-            opacity: 0.1;
         }
 
         footer {
@@ -46,6 +40,21 @@
             bottom: 0;
             left: 0;
             width: 100%;
+        }
+
+        #background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
         }
 
         @keyframes loading {
@@ -116,18 +125,20 @@
 <div id="background">
 
 </div>
-<header class="container-fluid text-center">
+
+<header class="text-center">
     <h1>xlovelab</h1>
 </header>
-</div>
+
 <div id="map"></div>
 
-<footer class="container-fluid text-center">
+<footer class="text-center">
     <hr>
     <p>
-        <a href="//xlove.github.io">xlove</a>
+        <a href="./about">about</a>
     </p>
 </footer>
+
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/d3/d3.min.js"></script>
@@ -141,8 +152,9 @@
             $this.replaceWith($this.text().replace(/(\w)/g, "<span>$&</span>"));
         }
     });
-    var spanCount = $("h1 span").length - 1;
-    $("h1 span").each(function (index) {
+    var $span = $("h1 span");
+    var spanCount = $span.length - 1;
+    $span.each(function (index) {
         var angle = ((130 / spanCount) * index) - 65;
         var delay = 1 / spanCount;
         $(this).css({
@@ -150,41 +162,17 @@
         });
     });
 
-    var width = window.innerWidth, height = window.innerHeight;
-    var h = window.innerHeight - $('header').height() - $('footer').height();
-
     var color = d3.scale.category20();
 
-    var svg = d3.select("#background").append("svg").attr("width", width).attr("height", height);
+    var w = window.innerWidth;
+    var h = window.innerHeight;
 
-    var map = d3.select("#map").append("svg").attr("width", width).attr("height", h).append("g").attr("transform", "translate(0,0)");
+    var svg = d3.select("#background").append("svg").attr("width", w).attr("height", h);
 
-    var projection = d3.geo.mercator().center([107, 31]).scale(Math.min(width, h)).translate([width / 2, height / 2]);
-    var p = d3.geo.path().projection(projection);
+    var proj = d3.geo.orthographic().translate([w / 2, h / 2]).clipAngle(90).scale(200);
+    var p = d3.geo.path().projection(proj).pointRadius(2);
 
-    d3.json("data/china.json", function (error, root) {
-
-        if (error) return console.error(error);
-
-        map.selectAll("path")
-                .data(root.features)
-                .enter()
-                .append("path")
-                .attr("stroke", "#000")
-                .attr("stroke-width", 3)
-                .attr("fill", function (d, i) {
-                    return '#000';
-                })
-                .attr("d", p)
-                .on("mouseover", function (d, i) {
-                    d3.select(this).attr("fill", color(Math.floor(Math.random() * 20)));
-                });
-    });
-
-    var proj = d3.geo.orthographic().translate([width / 2, height / 2]).clipAngle(90).scale(200);
-    var path = d3.geo.path().projection(proj).pointRadius(2);
-
-    d3_queue.queue().defer(d3.json, "data/world-110m.json").defer(d3.json, "data/places.json").await(ready);
+    d3_queue.queue().defer(d3.json, "x/data/world-110m.json").defer(d3.json, "x/data/places.json").await(ready);
 
     function ready(error, world, places) {
         var ocean_fill = svg.append("defs").append("radialGradient")
@@ -228,29 +216,79 @@
                 .attr("stop-opacity", "0");
 
         svg.append("ellipse")
-                .attr("cx", '50%').attr("cy", '100%')
+                .attr("cx", '50%').attr("cy", '90%')
                 .attr("rx", proj.scale() * .90)
                 .attr("ry", proj.scale() * .25)
                 .style("fill", "url(#drop_shadow)");
 
         svg.append("circle")
-                .attr("cx", width / 2).attr("cy", height / 2)
+                .attr("cx", w / 2).attr("cy", h / 2)
                 .attr("r", proj.scale())
                 .style("fill", "url(#ocean_fill)");
 
         svg.append("path")
                 .datum(topojson.feature(world, world.objects.land))
                 .attr("fill", color(Math.floor(Math.random() * 20)))
-                .attr("d", path);
+                .attr("d", p);
 
         refresh();
     }
+
+    var width = $("#map").width();
+    var height = window.innerHeight - $('header').height() - $('footer').height();
+
+    var map = d3.select("#map").append("svg").attr("width", width).attr("height", height).append("g").attr("transform", "translate(0,0)");
+
+    var projection = d3.geo.mercator();
+    var path = d3.geo.path().projection(projection);
+
+    d3.json("x/data/china.json", function (error, root) {
+
+        if (error) return console.error(error);
+
+        // create a first guess for the projection
+        var center = d3.geo.centroid(root);
+        var scale = 150;
+        var offset = [width / 2, height / 2];
+        projection = d3.geo.mercator().scale(scale).center(center).translate(offset);
+
+        // create the path
+        path = d3.geo.path().projection(projection);
+
+        // using the path determine the bounds of the current map and use
+        // these to determine better values for the scale and translation
+        var bounds = path.bounds(root);
+        var hscale = scale * width / (bounds[1][0] - bounds[0][0]);
+        var vscale = scale * height / (bounds[1][1] - bounds[0][1]);
+        scale = (hscale < vscale) ? hscale : vscale;
+        offset = [width - (bounds[0][0] + bounds[1][0]) / 2, height - (bounds[0][1] + bounds[1][1]) / 2];
+
+        // new projection
+        // center = [103.46936605656265, 36.64103213524577]
+        projection = d3.geo.mercator().center(center).scale(scale * 0.9).translate(offset);
+
+        path = path.projection(projection);
+
+        map.selectAll("path")
+                .data(root.features)
+                .enter()
+                .append("path")
+                .attr("stroke", "#000")
+                .attr("stroke-width", 3)
+                .attr("fill", function (d, i) {
+                    return '#000';
+                })
+                .attr("d", path)
+                .on("mouseover", function (d, i) {
+                    d3.select(this).attr("fill", color(Math.floor(Math.random() * 20)));
+                });
+    });
 
     function refresh() {
 
         svg.selectAll("path").attr("fill", function (d, i) {
             return Math.floor(s) % 10 == 0 ? color(Math.floor(Math.random() * 20)) : d3.select(this).attr("fill");
-        }).attr("d", path);
+        }).attr("d", p);
 
         svg.selectAll("ellipse")
                 .attr("rx", proj.scale() * .90)
@@ -258,7 +296,7 @@
 
         svg.selectAll("circle").attr("r", proj.scale());
 
-        map.selectAll("path").attr("d", p)
+        map.selectAll("path").attr("d", path)
     }
 
     requestAnimationFrame = requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;

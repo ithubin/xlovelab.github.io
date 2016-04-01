@@ -1,0 +1,89 @@
+{
+  "level": 0,
+  "name": "xlovelab",
+  "url": "/",
+  "img": "../x/images/default.png",
+  "children": [
+    {
+      "level": 1,
+      "name": "ilab",
+      "url": "../ilab",
+      "img": "../x/images/default.png",
+      "children": [
+        {
+          "level": 2,
+          "name": "刘永继",
+          "size": 10000,
+          "url": "//xlove.github.io",
+          "img": "../x/images/default.png"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "name": "xlab",
+      "url": "../xlab",
+      "img": "../x/images/default.png",
+      "children": [
+        {
+          "level": 2,
+          "name": "刘永继",
+          "size": 10000,
+          "url": "//xlove.github.io",
+          "img": "../x/images/default.png"
+        },
+        {
+          "level": 2,
+          "name": "张云龙",
+          "size": 10000,
+          "url": "//xlove.github.io",
+          "img": "../x/images/default.png"
+        },
+        {
+          "level": 2,
+          "name": "杨凯月",
+          "size": 10000,
+          "url": "//xlove.github.io",
+          "img": "../x/images/default.png"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "name": "vlab",
+      "url": "../vlab",
+      "img": "../x/images/default.png",
+      "children": [
+        {
+          "level": 2,
+          "name": "刘永继",
+          "size": 10000,
+          "url": "//xlove.github.io",
+          "img": "../x/images/default.png"
+        },
+        {
+          "level": 2,
+          "name": "朱光耀",
+          "size": 10000,
+          "url": "//xlove.github.io",
+          "img": "../x/images/default.png"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "name": "mlab",
+      "url": "../mlab",
+      "img": "../x/images/default.png",
+      "children": [
+        {
+          "level": 2,
+          "name": "刘永继",
+          "size": 10000,
+          "url": "//xlove.github.io",
+          "img": "../x/images/default.png"
+        }
+      ]
+    }
+  ]
+}

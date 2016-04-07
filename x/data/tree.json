@@ -36,14 +36,14 @@
           "level": 2,
           "name": "张云龙",
           "size": 10000,
-          "url": "//xlove.github.io",
+          "url": "/",
           "img": "../x/images/default.png"
         },
         {
           "level": 2,
           "name": "杨凯月",
           "size": 10000,
-          "url": "//xlove.github.io",
+          "url": "/",
           "img": "../x/images/default.png"
         }
       ]
@@ -80,7 +80,7 @@
           "level": 2,
           "name": "朱光耀",
           "size": 10000,
-          "url": "//zhgy-colin.github.io",
+          "url": "/",
           "img": "../x/images/default.png"
         }
       ]

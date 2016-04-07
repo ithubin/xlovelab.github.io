@@ -45,18 +45,6 @@
       "w": "480",
       "h": "480",
       "img": "../x/images/yangkaiyue.png"
-    },
-    {
-      "name": "郭薇",
-      "title": "前端开发工程师",
-      "location": "秦皇岛",
-      "log": "119.5666118",
-      "lat": "39.9426618",
-      "xlog": "128",
-      "xlat": "32",
-      "w": "480",
-      "h": "480",
-      "img": "../x/images/guowei.png"
     }
   ]
 }

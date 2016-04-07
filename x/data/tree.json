@@ -60,13 +60,6 @@
           "size": 10000,
           "url": "//xlove.github.io",
           "img": "../x/images/default.png"
-        },
-        {
-          "level": 2,
-          "name": "朱光耀",
-          "size": 10000,
-          "url": "//zhgy-colin.github.io",
-          "img": "../x/images/default.png"
         }
       ]
     },
@@ -81,6 +74,13 @@
           "name": "刘永继",
           "size": 10000,
           "url": "//xlove.github.io",
+          "img": "../x/images/default.png"
+        },
+        {
+          "level": 2,
+          "name": "朱光耀",
+          "size": 10000,
+          "url": "//zhgy-colin.github.io",
           "img": "../x/images/default.png"
         }
       ]

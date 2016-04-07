@@ -21,18 +21,6 @@
       "w": "480",
       "h": "480",
       "img": "../x/images/liuyongji.png"
-    },
-    {
-      "name": "朱光耀",
-      "title": "后端研发工程师",
-      "location": "郑州",
-      "log": "113.5230944",
-      "lat": "34.7428137",
-      "xlog": "100",
-      "xlat": "25",
-      "w": "480",
-      "h": "480",
-      "img": "../x/images/zhuguangyao.png"
     }
   ]
 }

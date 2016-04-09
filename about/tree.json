@@ -6,7 +6,7 @@
   "children": [
     {
       "level": 1,
-      "name": "ilab",
+      "name": "ilab • 创意小组",
       "url": "../ilab/",
       "img": "../x/images/default.png",
       "children": [
@@ -42,7 +42,7 @@
     },
     {
       "level": 1,
-      "name": "xlab",
+      "name": "xlab • 前端小组",
       "url": "../xlab/",
       "img": "../x/images/default.png",
       "children": [
@@ -78,7 +78,7 @@
     },
     {
       "level": 1,
-      "name": "vlab",
+      "name": "vlab • 后端小组",
       "url": "../vlab/",
       "img": "../x/images/default.png",
       "children": [
@@ -93,7 +93,7 @@
     },
     {
       "level": 1,
-      "name": "mlab",
+      "name": "mlab • 管理小组",
       "url": "../mlab/",
       "img": "../x/images/default.png",
       "children": [

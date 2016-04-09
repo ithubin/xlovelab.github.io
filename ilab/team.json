@@ -21,6 +21,18 @@
       "w": "480",
       "h": "480",
       "img": "../x/images/liuyongji.png"
+    },
+    {
+      "name": "刘远",
+      "title": "创意设计师",
+      "location": "赤峰",
+      "log": "118.8391011",
+      "lat": "42.273692",
+      "xlog": "136",
+      "xlat": "40",
+      "w": "480",
+      "h": "480",
+      "img": "../x/images/liuyuan.jpg"
     }
   ]
 }

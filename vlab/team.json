@@ -21,6 +21,18 @@
       "w": "480",
       "h": "480",
       "img": "../x/images/liuyongji.png"
+    },
+    {
+      "name": "胡斌",
+      "title": "后端工程师",
+      "location": "汉中",
+      "log": "106.5",
+      "lat": "33.5",
+      "xlog": "68",
+      "xlat": "36",
+      "w": "480",
+      "h": "480",
+      "img": "../x/images/default.png"
     }
   ]
 }

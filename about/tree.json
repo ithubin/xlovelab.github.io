@@ -88,6 +88,13 @@
           "size": 10000,
           "url": "//xlove.github.io",
           "img": "../x/images/default.png"
+        },
+        {
+          "level": 2,
+          "name": "胡斌",
+          "size": 10000,
+          "url": "/",
+          "img": "../x/images/default.png"
         }
       ]
     },

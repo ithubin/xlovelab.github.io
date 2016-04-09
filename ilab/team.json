@@ -23,6 +23,30 @@
       "img": "../x/images/liuyongji.png"
     },
     {
+      "name": "刘坤",
+      "title": "交互设计师",
+      "location": "石河子",
+      "log": "85.7431563",
+      "lat": "44.2926181",
+      "xlog": "68",
+      "xlat": "36",
+      "w": "480",
+      "h": "480",
+      "img": "../x/images/default.png"
+    },
+    {
+      "name": "武文哲",
+      "title": "全端工程师",
+      "location": "渭南",
+      "log": "109.3451959",
+      "lat": "34.4930058",
+      "xlog": "132",
+      "xlat": "25",
+      "w": "480",
+      "h": "480",
+      "img": "../x/images/default.png"
+    },
+    {
       "name": "刘远",
       "title": "创意设计师",
       "location": "赤峰",
@@ -32,7 +56,7 @@
       "xlat": "40",
       "w": "480",
       "h": "480",
-      "img": "../x/images/liuyuan.jpg"
+      "img": "../x/images/liuyuan.jpeg"
     }
   ]
 }

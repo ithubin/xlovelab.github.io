@@ -16,6 +16,27 @@
           "size": 10000,
           "url": "//xlove.github.io",
           "img": "../x/images/default.png"
+        },
+        {
+          "level": 2,
+          "name": "武文哲",
+          "size": 10000,
+          "url": "/",
+          "img": "../x/images/default.png"
+        },
+        {
+          "level": 2,
+          "name": "刘坤",
+          "size": 10000,
+          "url": "/",
+          "img": "../x/images/liukun.jpg"
+        },
+        {
+          "level": 2,
+          "name": "刘远",
+          "size": 10000,
+          "url": "/",
+          "img": "../x/images/liuyun.jpg"
         }
       ]
     },
@@ -30,6 +51,13 @@
           "name": "刘永继",
           "size": 10000,
           "url": "//xlove.github.io",
+          "img": "../x/images/default.png"
+        },
+        {
+          "level": 2,
+          "name": "武文哲",
+          "size": 10000,
+          "url": "/",
           "img": "../x/images/default.png"
         },
         {

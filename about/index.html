@@ -116,7 +116,7 @@
         }
 
         .node text {
-            /*font-size: x-large;*/
+            font-size: 1.5em;
             stroke: black;
         }
 
@@ -174,8 +174,8 @@
     var cluster = d3.layout.cluster().size([width, height - 360]);
 
     var diagonal = d3.svg.diagonal().projection(function (d) {
-                return [d.x, d.y];
-            });
+        return [d.x, d.y];
+    });
 
     var svg = d3.select("#tree").append("svg")
             .attr("width", width)
@@ -183,11 +183,11 @@
             .append("g")
             .attr("transform", "translate(0,120)");
 
-    d3.json("../x/data/tree.json", function (error, root) {
+    d3.json("tree.json", function (error, root) {
         if (error) throw error;
 
-        var nodes = cluster.nodes(root),
-                links = cluster.links(nodes);
+        var nodes = cluster.nodes(root);
+        var links = cluster.links(nodes);
 
         var link = svg.selectAll(".link")
                 .data(links)

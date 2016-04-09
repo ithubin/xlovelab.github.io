@@ -375,7 +375,7 @@
             var text = logo.append("text")
                     .attr("x", projection([team.xlog, team.xlat])[0] - projection([team.log, team.lat])[0])
                     .attr("y", projection([team.xlog, team.xlat])[1] - projection([team.log, team.lat])[1] - 80)
-                    .attr('style', 'font-size:2em; font-weight:bold')
+                    .attr('style', 'font-size:2em')
                     .attr('text-anchor', 'middle')
                     .attr('alignment-baseline', 'middle')
                     .text(team.name + ' • ' + team.title);

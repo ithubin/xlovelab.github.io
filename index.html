@@ -284,7 +284,7 @@
                 });
     });
 
-    var linear = d3.scale.linear().domain([100, 200]).range([0, 1]), list, o_color = color(Math.floor(Math.random() * 20)), c_color = color(Math.floor(Math.random() * 20)), compute = d3.interpolate(o_color, c_color), s = 100, flag = 5, o = 0, r = 1, max = 200, min = 100, v = $('span');
+    var linear = d3.scale.linear().domain([100, 200]).range([0, 1]), list, o_color = color(Math.floor(Math.random() * 20)), c_color = color(Math.floor(Math.random() * 20)), compute = d3.interpolate(o_color, c_color), s = 100, flag = 0.5, o = 0, r = 1, max = 200, min = 100, v = $('span');
     function refresh() {
 
         svg.selectAll("path").attr("d", p);

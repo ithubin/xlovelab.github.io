@@ -20,7 +20,7 @@
       "xlat": "24",
       "w": "480",
       "h": "480",
-      "img": "../x/images/liuyongji.png"
+      "img": "../x/images/liuyongji.jpg"
     },
     {
       "name": "刘坤",
@@ -32,7 +32,7 @@
       "xlat": "36",
       "w": "480",
       "h": "480",
-      "img": "../x/images/default.png"
+      "img": "../x/images/liukun.jpg"
     },
     {
       "name": "武文哲",
@@ -44,7 +44,7 @@
       "xlat": "25",
       "w": "480",
       "h": "480",
-      "img": "../x/images/default.png"
+      "img": "../x/images/wuwenzhe.jpg"
     },
     {
       "name": "刘远",
@@ -56,7 +56,7 @@
       "xlat": "40",
       "w": "480",
       "h": "480",
-      "img": "../x/images/liuyuan.jpeg"
+      "img": "../x/images/liuyuan.jpg"
     }
   ]
 }

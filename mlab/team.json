@@ -20,7 +20,7 @@
       "xlat": "24",
       "w": "480",
       "h": "480",
-      "img": "../x/images/liuyongji.png"
+      "img": "../x/images/liuyongji.jpg"
     },
     {
       "name": "朱光耀",
@@ -32,7 +32,7 @@
       "xlat": "25",
       "w": "480",
       "h": "480",
-      "img": "../x/images/zhuguangyao.png"
+      "img": "../x/images/zhuguangyao.jpg"
     }
   ]
 }

@@ -116,8 +116,11 @@
         }
 
         .node text {
-            font-size: 1.25em;
-            stroke: black;
+            font-size: 1em;
+        }
+
+        .node .text-title {
+            font-size: 2em;
         }
 
         .link {
@@ -201,6 +204,7 @@
                 .attr("xlink:href", function (d) {
                     return d.url;
                 })
+                .attr("target", "_blank")
                 .attr("class", "href")
                 .append("g")
                 .attr("class", "node")
@@ -222,6 +226,9 @@
                 })
                 .attr("text-anchor", function (d) {
                     return d.children ? "end" : "start";
+                })
+                .attr("class", function (d) {
+                    return d.children ? "text-title" : "text-name";
                 })
                 .text(function (d) {
                     return d.name;

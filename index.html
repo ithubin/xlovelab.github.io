@@ -284,34 +284,31 @@
                 });
     });
 
+    var linear = d3.scale.linear().domain([100, 200]).range([0, 1]), list, o_color = color(Math.floor(Math.random() * 20)), c_color = color(Math.floor(Math.random() * 20)), compute = d3.interpolate(o_color, c_color), s = 100, flag = 5, o = 0, r = 1, max = 200, min = 100, v = $('span');
     function refresh() {
 
-        svg.selectAll("path").attr("fill", function (d, i) {
-            return Math.floor(s) % 10 == 0 ? color(Math.floor(Math.random() * 20)) : d3.select(this).attr("fill");
-        }).attr("d", p);
-
-        svg.selectAll("ellipse")
-                .attr("rx", proj.scale() * .90)
-                .attr("ry", proj.scale() * .25);
-
+        svg.selectAll("path").attr("d", p);
+        svg.selectAll("ellipse").attr("rx", proj.scale() * .90).attr("ry", proj.scale() * .25);
         svg.selectAll("circle").attr("r", proj.scale());
 
-        map.selectAll("path").attr("d", path)
-    }
-
-    requestAnimationFrame = requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-    var s = 100, flag = 0.5, o = 0, r = 1, max = 200, min = 100, v = document.getElementsByTagName('h1')[0];
-    var animate = function () {
-        if (s > max || s < min) {
-            flag *= -1;
-
-            v.style.color = color(Math.floor(Math.random() * 20));
-            v.offsetTop;
-
-        }
         if (o > 360) o = 0;
         proj.scale(s += flag);
         proj.rotate([o += r, 0]);
+
+        if (s > max || s < min) {
+            flag *= -1;
+
+            o_color = c_color;
+            c_color = color(Math.floor(Math.random() * 20));
+            compute = d3.interpolate(o_color, c_color);
+        }
+
+        svg.selectAll("path").attr("fill", compute(linear(flag > 0 ? s : min + max - s)));
+    }
+
+    requestAnimationFrame = requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    var animate = function () {
+
         refresh();
 
         requestAnimationFrame(animate);

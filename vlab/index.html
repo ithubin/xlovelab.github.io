@@ -101,6 +101,9 @@
             animation-delay: .72s;
         }
 
+        .href:hover {
+            text-decoration: none;
+        }
     </style>
 
     <!--[if lt IE 9]>
@@ -267,7 +270,13 @@
                         return getColorHover(i);
                     });
 
-            location.append("circle")
+            location.append("a")
+                    .attr("xlink:href", function (d) {
+                        return d.url;
+                    })
+                    .attr("target", "_blank")
+                    .attr("class", "href")
+                    .append("circle")
                     .attr("cx", function (d) {
                         var coor = projection([d.log, d.lat]);
                         var xcoor = projection([d.xlog, d.xlat]);
@@ -342,7 +351,11 @@
                     .attr("y2", projection([team.log, team.lat])[1] - 12)
                     .attr('marker-end', 'url(#arrow)');
 
-            var logo = svg.append("g")
+            var logo = svg.append("a")
+                    .attr("xlink:href", team.url)
+                    .attr("target", "_blank")
+                    .attr("class", "href")
+                    .append("g")
                     .attr("transform", "translate(" + projection([team.log, team.lat])[0] + "," + projection([team.log, team.lat])[1] + ")");
 
             logo.append("circle")

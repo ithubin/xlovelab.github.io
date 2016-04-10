@@ -8,7 +8,8 @@
   "xlat": "47",
   "w": "480",
   "h": "480",
-  "img": "../x/images/team.png",
+  "img": "../x/images/mlab.png",
+  "url": "../mlab/",
   "people": [
     {
       "name": "刘永继",
@@ -20,7 +21,8 @@
       "xlat": "24",
       "w": "480",
       "h": "480",
-      "img": "../x/images/liuyongji.jpg"
+      "img": "../x/images/liuyongji.jpg",
+      "url": "//xlove.github.io"
     },
     {
       "name": "朱光耀",
@@ -32,7 +34,8 @@
       "xlat": "25",
       "w": "480",
       "h": "480",
-      "img": "../x/images/zhuguangyao.jpg"
+      "img": "../x/images/zhuguangyao.jpg",
+      "url": "//xlovelab.github.io"
     }
   ]
 }

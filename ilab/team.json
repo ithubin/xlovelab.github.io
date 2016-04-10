@@ -8,7 +8,8 @@
   "xlat": "47",
   "w": "480",
   "h": "480",
-  "img": "../x/images/team.png",
+  "img": "../x/images/ilab.png",
+  "url": "../ilab/",
   "people": [
     {
       "name": "刘永继",
@@ -20,7 +21,8 @@
       "xlat": "24",
       "w": "480",
       "h": "480",
-      "img": "../x/images/liuyongji.jpg"
+      "img": "../x/images/liuyongji.jpg",
+      "url": "//xlove.github.io"
     },
     {
       "name": "刘坤",
@@ -32,7 +34,8 @@
       "xlat": "36",
       "w": "480",
       "h": "480",
-      "img": "../x/images/liukun.jpg"
+      "img": "../x/images/liukun.jpg",
+      "url": "//xlovelab.github.io"
     },
     {
       "name": "武文哲",
@@ -44,7 +47,8 @@
       "xlat": "25",
       "w": "480",
       "h": "480",
-      "img": "../x/images/wuwenzhe.jpg"
+      "img": "../x/images/wuwenzhe.jpg",
+      "url": "//xlovelab.github.io"
     },
     {
       "name": "刘远",
@@ -56,7 +60,8 @@
       "xlat": "40",
       "w": "480",
       "h": "480",
-      "img": "../x/images/liuyuan.jpg"
+      "img": "../x/images/liuyuan.jpg",
+      "url": "//xlovelab.github.io"
     }
   ]
 }

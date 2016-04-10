@@ -117,6 +117,10 @@
             font-size: 2em;
         }
 
+        .node .text-group {
+            font-size: 2.5em;
+        }
+
         .link {
             fill: none;
             stroke: #ccc;
@@ -249,7 +253,7 @@
                 .attr("dx", 0)
                 .attr("dy", 0)
                 .attr("transform", function (d) {
-                    if (d.level == 0) return "translate(54, -5)";
+                    if (d.level == 0) return "translate(66, -5)";
                     if (d.level == 1) return "translate(32, 0)";
                     return "rotate(90)translate(5, 5)";
                 })
@@ -257,7 +261,9 @@
                     return d.children ? "end" : "start";
                 })
                 .attr("class", function (d) {
-                    return d.children ? "text-title" : "text-name";
+                    if (d.level == 0) return "text-group";
+                    if (d.level == 1) return "text-title";
+                    return "text-name";
                 })
                 .text(function (d) {
                     return d.name;

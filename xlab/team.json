@@ -25,12 +25,25 @@
       "url": "//xlove.github.io"
     },
     {
+      "name": "刘世凯",
+      "title": "前端工程师",
+      "location": "淄博",
+      "log": "117.910069",
+      "lat": "36.8236245",
+      "xlog": "136",
+      "xlat": "38",
+      "w": "480",
+      "h": "480",
+      "img": "../x/images/liushikai.jpg",
+      "url": "//xlove.github.io"
+    },
+    {
       "name": "张云龙",
       "title": "前端工程师",
       "location": "郑州",
       "log": "113.5230944",
       "lat": "34.7428137",
-      "xlog": "136",
+      "xlog": "68",
       "xlat": "38",
       "w": "480",
       "h": "480",

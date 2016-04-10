@@ -37,6 +37,9 @@
           "name": "武文哲"
         },
         {
+          "name": "刘世凯"
+        },
+        {
           "name": "张云龙"
         },
         {
@@ -108,6 +111,13 @@
       "size": 480,
       "url": "//xlovelab.github.io",
       "img": "../x/images/liuyuan.jpg"
+    },
+    "刘世凯": {
+      "level": 2,
+      "name": "刘世凯",
+      "size": 480,
+      "url": "//xlovelab.github.io",
+      "img": "../x/images/liushikai.jpg"
     },
     "张云龙": {
       "level": 2,

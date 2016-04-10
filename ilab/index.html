@@ -101,23 +101,34 @@
             animation-delay: .72s;
         }
 
-        .l {
+        .href:hover {
+            text-decoration: none;
+        }
+
+        #introduction {
             font-size: 1.5em;
+            color: transparent;
+            background-color : black;
+            text-shadow : rgba(255,255,255,0.5) 0 5px 6px, rgba(255,255,255,0.2) 1px 3px 3px;
+            -webkit-background-clip : text;
+            margin: 1em;
+        }
+
+        .r-right {
             transform: rotate(45deg);
+        }
+
+        .l {
             margin: 1em;
         }
 
         .list {
-            transform: rotate(45deg);
             margin: 1em;
             color: #fafafa;
             letter-spacing: 0;
             text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135
         }
 
-        .href:hover {
-            text-decoration: none;
-        }
     </style>
 
     <!--[if lt IE 9]>
@@ -135,16 +146,23 @@
     <h1>ilab</h1>
 </header>
 
-<div style="position: absolute; top: 12em; right: 0em;">
-    <div class="l">tips:</div>
-    <div class="list">。。。。。。</div>
-    <div class="list">基于地理位置的旅途分享展示</div>
-    <div class="list">基于地理位置的摄影图片展示</div>
-    <div class="list">基于微信的旅游景点实时语音讲解</div>
-    <div class="list">基于微信的'我们聚会吧'</div>
-    <div class="list">。。。。。。</div>
-    <div class="list">。。。</div>
-    <div class="list">。</div>
+<div style="position: absolute; top: 10em; left: 0;">
+    <div id="introduction" class="l"></div>
+</div>
+
+<div style="position: absolute; top: 16em; right: 0;">
+    <ol>
+        <li class="list r-right">tips:</li>
+        <li class="list r-right">。。。。。。</li>
+        <li class="list r-right">创意设计持续更新中</li>
+        <li class="list r-right">基于地理位置的旅途分享展示</li>
+        <li class="list r-right">基于地理位置的摄影图片展示</li>
+        <li class="list r-right">基于微信的旅游景点实时语音讲解</li>
+        <li class="list r-right">基于微信的'我们聚会吧'</li>
+        <li class="list r-right">。。。。。。</li>
+        <li class="list r-right">。。。</li>
+        <li class="list r-right">。</li>
+    </ol>
 </div>
 
 <div id="ilab"></div>
@@ -160,6 +178,7 @@
 <script src="../bower_components/d3/d3.min.js"></script>
 <script src="../bower_components/d3-queue/d3-queue.js"></script>
 <script src="../bower_components/topojson/topojson.js"></script>
+<script src="../bower_components/typed.js/dist/typed.min.js"></script>
 <script>
 
     $("h1").children().andSelf().contents().each(function () {
@@ -226,6 +245,15 @@
                 });
 
         d3.json("team.json", function (error, team) {
+
+            if (error) return console.error(error);
+
+            $("#introduction").typed({
+                strings: ["<h2>欢迎来到<hr>xlovelab<hr>" + team.title + "<hr>" + team.name + "<hr>期待你的加入</h2>"],
+                typeSpeed: 100,
+                loop: true,
+                showCursor: false
+            });
 
             var defs = svg.append("defs");
 

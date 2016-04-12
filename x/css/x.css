@@ -3,7 +3,7 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-family: "黑体";
+    font-family: "黑体", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 header {
@@ -87,9 +87,9 @@ a:hover {
 .intro {
     font-size: 1.5em;
     color: transparent;
-    background-color : black;
-    text-shadow : rgba(255,255,255,0.5) 0 5px 6px, rgba(255,255,255,0.2) 1px 3px 3px;
-    -webkit-background-clip : text;
+    background-color: black;
+    text-shadow: rgba(255, 255, 255, 0.5) 0 5px 6px, rgba(255, 255, 255, 0.2) 1px 3px 3px;
+    -webkit-background-clip: text;
     margin: 1em;
 }
 

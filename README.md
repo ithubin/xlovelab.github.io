@@ -1,4 +1,4 @@
-# xlovelab(http://xlovelab.github.io)
+# xlovelab
 
 [刘永继](http://xlove.github.io)
 

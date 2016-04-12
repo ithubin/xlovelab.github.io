@@ -29,6 +29,8 @@
         html, body {
             margin: 0;
             padding: 0;
+            overflow: hidden;
+            font-family: "黑体";
         }
 
         header {
@@ -105,12 +107,8 @@
             margin: auto;
         }
 
-        .node {
-            cursor: pointer;
-        }
-
         .node text {
-            font-size: 1em;
+            font-size: 1.5em;
         }
 
         .node .text-title {
@@ -127,7 +125,7 @@
             stroke-width: 3px;
         }
 
-        .href:hover {
+        a:hover {
             text-decoration: none;
         }
     </style>
@@ -225,7 +223,6 @@
                     return d.url || root.people[d.name].url;
                 })
                 .attr("target", "_blank")
-                .attr("class", "href")
                 .append("g")
                 .attr("class", "node")
                 .attr("transform", function (d, i) {
@@ -233,16 +230,16 @@
                     if (d.children == undefined) {
                         d3.select(this).append("circle")
                                 .attr("cx", 0)
-                                .attr("cy", 100)
+                                .attr("cy", 0)
                                 .attr("r", '3%')
                                 .attr("stroke", color(root.people[d.name].id))
-                                .attr("stroke-width", '0.4%')
+                                .attr("stroke-width", '0.2%')
                                 .attr("fill", 'url(#' + d.name + ')')
                                 .on("mouseover", function () {
                                     d3.select(this).attr("stroke-width", 0);
                                 })
                                 .on("mouseout", function () {
-                                    d3.select(this).attr("stroke-width", '0.4%');
+                                    d3.select(this).attr("stroke-width", '0.2%');
                                 });
                     }
 
@@ -251,15 +248,12 @@
 
         node.append("text")
                 .attr("dx", 0)
-                .attr("dy", 0)
-                .attr("transform", function (d) {
-                    if (d.level == 0) return "translate(66, -5)";
-                    if (d.level == 1) return "translate(32, 0)";
-                    return "rotate(90)translate(5, 5)";
+                .attr("dy", function (d) {
+                    if (d.children == undefined) return 64;
+                    return 0;
                 })
-                .attr("text-anchor", function (d) {
-                    return d.children ? "end" : "start";
-                })
+                .attr('text-anchor', 'middle')
+                .attr('alignment-baseline', 'middle')
                 .attr("class", function (d) {
                     if (d.level == 0) return "text-group";
                     if (d.level == 1) return "text-title";

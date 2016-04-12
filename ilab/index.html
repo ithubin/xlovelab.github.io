@@ -24,112 +24,7 @@
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="../bower_components/animate.css/animate.min.css" rel="stylesheet">
 
-    <style>
-
-        html, body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        header {
-            width: 100%;
-        }
-
-        footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-        }
-
-        #ilab {
-            width: 100%;
-            height: 100%;
-        }
-
-        @keyframes loading {
-            to {
-                text-shadow: 0 0 2px rgba(204, 208, 212, 0.2), 0 0 3px rgba(0, 0, 0, 0.02), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0px rgba(255, 255, 180, 0);
-                color: transparent;
-            }
-
-        }
-
-        h1 {
-            font-family: 'Source Code Pro', sans-serif;
-        }
-
-        h1 span {
-            font-size: 2em;
-            text-align: center;
-            display: inline-block;
-            transform-origin: 50% 250%;
-            text-shadow: 0 0 2px rgba(204, 208, 212, 0.9), 0 15px 25px rgba(0, 0, 0, 0.3), 0 -2px 3px rgba(0, 0, 0, 0.1), 0 -5px 10px rgba(255, 255, 255, 0.5), 0 5px 10px rgba(0, 0, 0, 0.3), 0 3px 4px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.45), 0 0 30px rgba(255, 255, 180, .4);
-            animation: loading 1.2s ease-in-out infinite alternate;
-        }
-
-        h1 span:nth-child(1) {
-            animation-delay: .09s;
-        }
-
-        h1 span:nth-child(2) {
-            animation-delay: .18s;
-        }
-
-        h1 span:nth-child(3) {
-            animation-delay: .27s;
-        }
-
-        h1 span:nth-child(4) {
-            animation-delay: .36s;
-        }
-
-        h1 span:nth-child(5) {
-            animation-delay: .45s;
-        }
-
-        h1 span:nth-child(6) {
-            animation-delay: .54s;
-        }
-
-        h1 span:nth-child(7) {
-            animation-delay: .63s;
-        }
-
-        h1 span:nth-child(8) {
-            animation-delay: .72s;
-        }
-
-        .href:hover {
-            text-decoration: none;
-        }
-
-        #introduction {
-            font-size: 1.5em;
-            color: transparent;
-            background-color : black;
-            text-shadow : rgba(255,255,255,0.5) 0 5px 6px, rgba(255,255,255,0.2) 1px 3px 3px;
-            -webkit-background-clip : text;
-            margin: 1em;
-        }
-
-        .r-right {
-            transform: rotate(45deg);
-        }
-
-        .l {
-            margin: 1em;
-        }
-
-        .list {
-            margin: 1em;
-            color: #fafafa;
-            letter-spacing: 0;
-            text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135
-        }
-
-    </style>
+    <link href="../x/css/x.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -146,23 +41,12 @@
     <h1>ilab</h1>
 </header>
 
-<div style="position: absolute; top: 10em; left: 0;">
-    <div id="introduction" class="l"></div>
+<div style="position: absolute; top: 12em; left: 0;">
+    <div class="intro"></div>
 </div>
 
-<div style="position: absolute; top: 16em; right: 0;">
-    <ol>
-        <li class="list r-right">tips:</li>
-        <li class="list r-right">。。。。。。</li>
-        <li class="list r-right">创意设计持续更新中</li>
-        <li class="list r-right">基于地理位置的旅途分享展示</li>
-        <li class="list r-right">基于地理位置的摄影图片展示</li>
-        <li class="list r-right">基于微信的旅游景点实时语音讲解</li>
-        <li class="list r-right">基于微信的'我们聚会吧'</li>
-        <li class="list r-right">。。。。。。</li>
-        <li class="list r-right">。。。</li>
-        <li class="list r-right">。</li>
-    </ol>
+<div style="position: absolute; top: 12em; right: 0;">
+    <ul class="tips"></ul>
 </div>
 
 <div id="ilab"></div>
@@ -248,10 +132,22 @@
 
             if (error) return console.error(error);
 
-            $("#introduction").typed({
-                strings: ["<h2>欢迎来到<hr>xlovelab<hr>" + team.title + "<hr>" + team.name + "<hr>期待你的加入</h2>"],
+            $(".intro").typed({
+                strings: ["<h2>@_@<hr/>Hello<hr/>Welcome to<hr/>xlovelab<hr/>@_@</h2>", "<h2>@_@<hr/>xlovelab<hr/>" + team.title + "<hr/>" + team.name + "<hr/>@_@</h2>"],
                 typeSpeed: 100,
-                loop: true,
+                loop: false,
+                showCursor: false
+            });
+
+            var str = "";
+            for (var k in team.tips) {
+                str += "<li class='tip'>" + team.tips[k] + "</li>"
+            }
+
+            $(".tips").typed({
+                strings: [str],
+                typeSpeed: 100,
+                loop: false,
                 showCursor: false
             });
 
@@ -372,9 +268,9 @@
                         return projection([d.xlog, d.xlat])[0] - projection([d.log, d.lat])[0]
                     })
                     .attr("y", function (d, i) {
-                        return projection([d.xlog, d.xlat])[1] - projection([d.log, d.lat])[1] + 72
+                        return projection([d.xlog, d.xlat])[1] - projection([d.log, d.lat])[1] + 80
                     })
-                    //                    .attr('style', 'font-size:1.372em; font-weight:bold')
+                    .attr('style', 'font-size:1.372em')
                     .attr('text-anchor', 'middle')
                     .attr('alignment-baseline', 'middle')
                     .text(function (d, i) {
@@ -442,11 +338,11 @@
 
             var text = logo.append("text")
                     .attr("x", projection([team.xlog, team.xlat])[0] - projection([team.log, team.lat])[0])
-                    .attr("y", projection([team.xlog, team.xlat])[1] - projection([team.log, team.lat])[1] - 80)
+                    .attr("y", projection([team.xlog, team.xlat])[1] - projection([team.log, team.lat])[1] - 90)
                     .attr('style', 'font-size:2em')
                     .attr('text-anchor', 'middle')
                     .attr('alignment-baseline', 'middle')
-                    .text(team.name + ' • ' + team.title);
+                    .text(team.title);
 
         });
     });

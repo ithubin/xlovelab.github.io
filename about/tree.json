@@ -38,12 +38,6 @@
         },
         {
           "name": "刘世凯"
-        },
-        {
-          "name": "张云龙"
-        },
-        {
-          "name": "杨凯月"
         }
       ]
     },
@@ -118,20 +112,6 @@
       "size": 480,
       "url": "//xlovelab.github.io",
       "img": "../x/images/liushikai.jpg"
-    },
-    "张云龙": {
-      "level": 2,
-      "name": "张云龙",
-      "size": 480,
-      "url": "//xlovelab.github.io",
-      "img": "../x/images/zhangyunlong.jpg"
-    },
-    "杨凯月": {
-      "level": 2,
-      "name": "杨凯月",
-      "size": 480,
-      "url": "//xlovelab.github.io",
-      "img": "../x/images/yangkaiyue.jpg"
     },
     "胡斌": {
       "level": 2,

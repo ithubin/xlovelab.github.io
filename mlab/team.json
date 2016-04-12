@@ -5,7 +5,7 @@
   "log": "116.1172797",
   "lat": "39.9390731",
   "xlog": "103.5",
-  "xlat": "47",
+  "xlat": "46.5",
   "w": "480",
   "h": "480",
   "img": "../x/images/mlab.png",
@@ -37,5 +37,11 @@
       "img": "../x/images/zhuguangyao.jpg",
       "url": "//xlovelab.github.io"
     }
+  ],
+  "tips": [
+    "。。。。。。",
+    "管理tips",
+    "。。。。。。",
+    "。。。。。。"
   ]
 }

@@ -4,7 +4,7 @@
 
 [朱光耀](http://github.com/zhgy-colin)
 
-[胡斌](http://xlovelab.github.io)
+[胡斌](http://github.com/ithubin)
 
 [武文哲](http://xlovelab.github.io)
 

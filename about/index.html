@@ -23,6 +23,7 @@
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="../bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="../x/css/style.css" rel="stylesheet">
 
     <style>
 
@@ -102,29 +103,6 @@
             animation-delay: .72s;
         }
 
-        svg {
-            display: block;
-            margin: auto;
-        }
-
-        .node text {
-            font-size: 1.5em;
-        }
-
-        .node .text-title {
-            font-size: 2em;
-        }
-
-        .node .text-group {
-            font-size: 2.5em;
-        }
-
-        .link {
-            fill: none;
-            stroke: #ccc;
-            stroke-width: 3px;
-        }
-
         a:hover {
             text-decoration: none;
         }
@@ -144,7 +122,7 @@
     <a href="../"><h1>xlovelab</h1></a>
 </header>
 
-<div id="tree"></div>
+<div id="tree" class="row"></div>
 
 <footer class="text-center">
     <hr>
@@ -165,104 +143,33 @@
         }
     });
 
-    var width = $('#tree').width();
-    var height = window.innerHeight - $('header').height() - $('footer').height();
-
-    var color = d3.scale.category20();
-
-    var cluster = d3.layout.cluster().size([width, height - 360]);
-
-    var diagonal = d3.svg.diagonal().projection(function (d) {
-        return [d.x, d.y];
-    });
-
-    var svg = d3.select("#tree").append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .append("g")
-            .attr("transform", "translate(0,120)");
-
     d3.json("tree.json", function (error, root) {
         if (error) throw error;
 
-        var defs = svg.append("defs");
-        var data, count = 0;
+        for (var i in root.children) {
 
-        for (var i in root.people) {
+            var lab = root.children[i];
 
-            data = root.people[i];
-
-            data.id = count++;
-
-            defs.append('pattern')
-                    .attr('id', data.name)
-                    .attr('width', '100%')
-                    .attr('height', '100%')
-                    .attr('viewBox', '0 0 ' + data.size + ' ' + data.size)
-                    .append("image")
-                    .attr("xlink:href", data.img)
-                    .attr('width', data.size)
-                    .attr('height', data.size);
+            $('' +
+                    '<div class="col-sm-3">' +
+                    '<div class="ih-item circle">' +
+                    '<a href="' + lab.url + '">' +
+                    '<div class="img"><img src="' + lab.img + '" alt="img"></div>' +
+                    '<div class="info"><div class="info-back">' +
+                    '<h3>' + lab.name + '</h3>' +
+                    '<p>' + lab.desc + '</p>' +
+                    '</div></div>' +
+                    '</a>' +
+                    '</div>' +
+                    '</div>'
+            ).appendTo($('#tree'));
 
         }
 
-        var nodes = cluster.nodes(root);
-        var links = cluster.links(nodes);
-
-        var link = svg.selectAll(".link")
-                .data(links)
-                .enter().append("path")
-                .attr("class", "link")
-                .attr("d", diagonal);
-
-        var node = svg.selectAll(".node")
-                .data(nodes)
-                .enter()
-                .append("a")
-                .attr("xlink:href", function (d) {
-                    return d.url || root.people[d.name].url;
-                })
-                .attr("target", "_blank")
-                .append("g")
-                .attr("class", "node")
-                .attr("transform", function (d, i) {
-
-                    if (d.children == undefined) {
-                        d3.select(this).append("circle")
-                                .attr("cx", 0)
-                                .attr("cy", 0)
-                                .attr("r", '3%')
-                                .attr("stroke", color(root.people[d.name].id))
-                                .attr("stroke-width", '0.2%')
-                                .attr("fill", 'url(#' + d.name + ')')
-                                .on("mouseover", function () {
-                                    d3.select(this).attr("stroke-width", 0);
-                                })
-                                .on("mouseout", function () {
-                                    d3.select(this).attr("stroke-width", '0.2%');
-                                });
-                    }
-
-                    return "translate(" + d.x + "," + d.y + ")";
-                });
-
-        node.append("text")
-                .attr("dx", 0)
-                .attr("dy", function (d) {
-                    if (d.children == undefined) return 64;
-                    return 0;
-                })
-                .attr('text-anchor', 'middle')
-                .attr('alignment-baseline', 'middle')
-                .attr("class", function (d) {
-                    if (d.level == 0) return "text-group";
-                    if (d.level == 1) return "text-title";
-                    return "text-name";
-                })
-                .text(function (d) {
-                    return d.name;
-                });
-
+        $('.ih-item').addClass('effect' + (Math.floor(Math.random() * 15) + 1));
+        $('.ih-item.circle').height($('.ih-item.circle').width());
+        $('.ih-item .img').height($('.ih-item.circle').width());
+        $('#tree').css('margin-top', (window.innerHeight - $('header').height() - $('footer').height() - $('#tree').height()) * 0.375 + 'px')
     });
 
 </script>

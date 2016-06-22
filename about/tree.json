@@ -7,124 +7,30 @@
     {
       "level": 1,
       "name": "ilab",
+      "desc": "创意小组",
       "url": "../ilab/",
-      "img": "../x/images/ilab.png",
-      "children": [
-        {
-          "name": "刘永继"
-        },
-        {
-          "name": "武文哲"
-        },
-        {
-          "name": "刘坤"
-        },
-        {
-          "name": "刘远"
-        }
-      ]
+      "img": "../x/images/ilab.png"
     },
     {
       "level": 1,
       "name": "xlab",
+      "desc": "前端小组",
       "url": "../xlab/",
-      "img": "../x/images/xlab.png",
-      "children": [
-        {
-          "name": "刘永继"
-        },
-        {
-          "name": "武文哲"
-        },
-        {
-          "name": "刘世凯"
-        }
-      ]
+      "img": "../x/images/xlab.png"
     },
     {
       "level": 1,
       "name": "vlab",
+      "desc": "后端小组",
       "url": "../vlab/",
-      "img": "../x/images/vlab.png",
-      "children": [
-        {
-          "name": "刘永继"
-        },
-        {
-          "name": "胡斌"
-        },
-        {
-          "name": "朱光耀"
-        }
-      ]
+      "img": "../x/images/vlab.png"
     },
     {
       "level": 1,
       "name": "mlab",
+      "desc": "管理小组",
       "url": "../mlab/",
-      "img": "../x/images/mlab.png",
-      "children": [
-        {
-          "name": "刘永继"
-        },
-        {
-          "name": "朱光耀"
-        },
-        {
-          "name": "胡斌"
-        }
-      ]
+      "img": "../x/images/mlab.png"
     }
-  ],
-  "people": {
-    "刘永继": {
-      "level": 2,
-      "name": "刘永继",
-      "size": 480,
-      "url": "//xlove.github.io",
-      "img": "../x/images/liuyongji.jpg"
-    },
-    "朱光耀": {
-      "level": 2,
-      "name": "朱光耀",
-      "size": 480,
-      "url": "//xlovelab.github.io",
-      "img": "../x/images/zhuguangyao.jpg"
-    },
-    "武文哲": {
-      "level": 2,
-      "name": "武文哲",
-      "size": 480,
-      "url": "//xlovelab.github.io",
-      "img": "../x/images/wuwenzhe.jpg"
-    },
-    "刘坤": {
-      "level": 2,
-      "name": "刘坤",
-      "size": 480,
-      "url": "//xlovelab.github.io",
-      "img": "../x/images/liukun.jpg"
-    },
-    "刘远": {
-      "level": 2,
-      "name": "刘远",
-      "size": 480,
-      "url": "//xlovelab.github.io",
-      "img": "../x/images/liuyuan.jpg"
-    },
-    "刘世凯": {
-      "level": 2,
-      "name": "刘世凯",
-      "size": 480,
-      "url": "//xlovelab.github.io",
-      "img": "../x/images/liushikai.jpg"
-    },
-    "胡斌": {
-      "level": 2,
-      "name": "胡斌",
-      "size": 480,
-      "url": "//xlovelab.github.io",
-      "img": "../x/images/hubin.jpg"
-    }
-  }
+  ]
 }
